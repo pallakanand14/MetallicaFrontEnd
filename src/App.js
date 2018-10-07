@@ -1,24 +1,17 @@
-import React, { Component } from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-import logo from './logo.svg';
-import './App.css';
-import LiveData from './LiveData'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router,Route,IndexRoute,browserHistory} from 'react-router';
+import {Provider} from 'react-redux';
+import store from './store';
+import app from './components/mainscript';
+import MainComponent from './components/main.component';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <div>
-          <LiveData />
-        </div>
-      </div>
-    );
-  }
-}
+var router =  <Provider store={store}>
+                        <Router history={browserHistory}>
+                          <Route path="/" component={app} >
 
-
-export default App;
+                          </Route>
+                        </Router>
+                    </Provider>
+ReactDOM.render(router,
+document.getElementById('content'));
